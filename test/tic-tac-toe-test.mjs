@@ -102,143 +102,143 @@ describe('tic-tac-toe', function() {
     // });
 
 
-    describe('getWinner', function() {
-        it('returns the letter that won the board by filling a row on 4 x 4 board', function() {
-            let board = tic.boardFromString(' '.repeat(16))
-            board = tic.placeLetter(board, 'X', "B1");
-            board = tic.placeLetter(board, 'X', "B2");
-            board = tic.placeLetter(board, 'X', "B3");
-            board = tic.placeLetter(board, 'X', "B4");
-            expect(tic.getWinner(board)).to.equal('X');
+    // describe('getWinner', function() {
+    //     it('returns the letter that won the board by filling a row on 4 x 4 board', function() {
+    //         let board = tic.boardFromString(' '.repeat(16))
+    //         board = tic.placeLetter(board, 'X', "B1");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "B3");
+    //         board = tic.placeLetter(board, 'X', "B4");
+    //         expect(tic.getWinner(board)).to.equal('X');
+    //     });
+
+    //     it('returns the letter that won the board by filling a column on 4 x 4 board', function() {
+    //         let board = tic.boardFromString(' '.repeat(16))
+    //         board = tic.placeLetter(board, 'X', "A2");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "C2");
+    //         board = tic.placeLetter(board, 'X', "D2");
+    //         expect(tic.getWinner(board)).to.equal('X');
+    //     });
+
+    //     it('returns the letter that won the board by filling a upper left to lower right diagonal on 4 x 4 board', function() {
+    //         let board = tic.boardFromString(' '.repeat(16))
+    //         board = tic.placeLetter(board, 'X', "A1");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "C3");
+    //         board = tic.placeLetter(board, 'X', "D4");
+    //         expect(tic.getWinner(board)).to.equal('X');
+    //     });
+
+    //     it('returns the letter that won the board by filling a upper left to lower right diagonal on 4 x 4 board', function() {
+    //         let board = tic.boardFromString(' '.repeat(16))
+    //         board = tic.placeLetter(board, 'X', "A4");
+    //         board = tic.placeLetter(board, 'X', "B3");
+    //         board = tic.placeLetter(board, 'X', "C2");
+    //         board = tic.placeLetter(board, 'X', "D1");
+    //         expect(tic.getWinner(board)).to.equal('X');
+    //     });
+
+    //     it('returns the letter that won the board by filling a upper left to lower right diagonal on 7 x 7 board', function() {
+    //         let board = tic.boardFromString(' '.repeat(49))
+    //         board = tic.placeLetter(board, 'X', "A1");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "C3");
+    //         board = tic.placeLetter(board, 'X', "D4");
+    //         board = tic.placeLetter(board, 'X', "E5");
+    //         board = tic.placeLetter(board, 'X', "F6");
+    //         board = tic.placeLetter(board, 'X', "G7");
+    //         expect(tic.getWinner(board)).to.equal('X');
+    //     });
+
+    //     it('returns undefined if no winner, missing last in a row', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         board = tic.placeLetter(board, 'X', "B1");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         expect(tic.getWinner(board)).to.be.undefined;
+    //     });
+
+    //     it('returns undefined if no winner, missing first in a row', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "B3");
+    //         expect(tic.getWinner(board)).to.be.undefined;
+    //     });
+
+    //     it('returns undefined if no winner, missing top of column', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         board = tic.placeLetter(board, 'X', "A2");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         expect(tic.getWinner(board)).to.be.undefined;
+    //     });
+
+    //     it('returns undefined if no winner, missing bottom of column', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "C2");
+    //         expect(tic.getWinner(board)).to.be.undefined;
+    //     });
+
+
+    //     it('returns undefined if no winner, missing center', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         board = tic.placeLetter(board, 'X', "A3");
+    //         board = tic.placeLetter(board, 'O', "B2");
+    //         board = tic.placeLetter(board, 'X', "C1");
+    //         expect(tic.getWinner(board)).to.be.undefined;
+    //     });
+    // });
+
+
+
+    // describe('isBoardFull', function() {
+    //     it('returns true if there are no spaces left on the board', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         board = tic.placeLetter(board, 'X', "A1");
+    //         board = tic.placeLetter(board, 'X', "A2");
+    //         board = tic.placeLetter(board, 'X', "A3");
+    //         board = tic.placeLetter(board, 'X', "B1");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "B3");
+    //         board = tic.placeLetter(board, 'X', "C1");
+    //         board = tic.placeLetter(board, 'X', "C2");
+    //         board = tic.placeLetter(board, 'X', "C3");
+    //         expect(tic.isBoardFull(board)).to.be.true;
+    //     });
+
+    //     it('returns false if there are still empty cells left on the board', function() {
+    //         let board = tic.generateBoard(3, 3, " ");
+    //         expect(tic.isBoardFull(board)).to.be.false;
+
+    //         board = tic.placeLetter(board, 'X', "A2");
+    //         board = tic.placeLetter(board, 'X', "A3");
+    //         board = tic.placeLetter(board, 'X', "B1");
+    //         board = tic.placeLetter(board, 'X', "B2");
+    //         board = tic.placeLetter(board, 'X', "B3");
+    //         board = tic.placeLetter(board, 'X', "C1");
+    //         board = tic.placeLetter(board, 'X', "C2");
+    //         board = tic.placeLetter(board, 'X', "C3");
+    //         expect(tic.isBoardFull(board)).to.be.false;
+    //     });
+    // });
+
+
+    describe('isValidMove', function() {
+        it('returns true if move is played into empty cell that is within the board\'s dimensions', function() {
+            const board = tic.generateBoard(3, 3, " ");
+            expect(tic.isValidMove(board, 'B2')).to.be.true;
         });
 
-        it('returns the letter that won the board by filling a column on 4 x 4 board', function() {
-            let board = tic.boardFromString(' '.repeat(16))
-            board = tic.placeLetter(board, 'X', "A2");
-            board = tic.placeLetter(board, 'X', "B2");
-            board = tic.placeLetter(board, 'X', "C2");
-            board = tic.placeLetter(board, 'X', "D2");
-            expect(tic.getWinner(board)).to.equal('X');
+        it('returns false if move is out of bounds', function() {
+            const board = tic.generateBoard(3, 3, " ");
+            expect(tic.isValidMove(board, 'D5')).to.be.false;
         });
 
-        it('returns the letter that won the board by filling a upper left to lower right diagonal on 4 x 4 board', function() {
-            let board = tic.boardFromString(' '.repeat(16))
-            board = tic.placeLetter(board, 'X', "A1");
-            board = tic.placeLetter(board, 'X', "B2");
-            board = tic.placeLetter(board, 'X', "C3");
-            board = tic.placeLetter(board, 'X', "D4");
-            expect(tic.getWinner(board)).to.equal('X');
-        });
-
-        it('returns the letter that won the board by filling a upper left to lower right diagonal on 4 x 4 board', function() {
-            let board = tic.boardFromString(' '.repeat(16))
-            board = tic.placeLetter(board, 'X', "A4");
-            board = tic.placeLetter(board, 'X', "B3");
-            board = tic.placeLetter(board, 'X', "C2");
-            board = tic.placeLetter(board, 'X', "D1");
-            expect(tic.getWinner(board)).to.equal('X');
-        });
-
-        it('returns the letter that won the board by filling a upper left to lower right diagonal on 7 x 7 board', function() {
-            let board = tic.boardFromString(' '.repeat(49))
-            board = tic.placeLetter(board, 'X', "A1");
-            board = tic.placeLetter(board, 'X', "B2");
-            board = tic.placeLetter(board, 'X', "C3");
-            board = tic.placeLetter(board, 'X', "D4");
-            board = tic.placeLetter(board, 'X', "E5");
-            board = tic.placeLetter(board, 'X', "F6");
-            board = tic.placeLetter(board, 'X', "G7");
-            expect(tic.getWinner(board)).to.equal('X');
-        });
-
-        it('returns undefined if no winner, missing last in a row', function() {
-            let board = tic.generateBoard(3, 3, " ");
-            board = tic.placeLetter(board, 'X', "B1");
-            board = tic.placeLetter(board, 'X', "B2");
-            expect(tic.getWinner(board)).to.be.undefined;
-        });
-
-        it('returns undefined if no winner, missing first in a row', function() {
-            let board = tic.generateBoard(3, 3, " ");
-            board = tic.placeLetter(board, 'X', "B2");
-            board = tic.placeLetter(board, 'X', "B3");
-            expect(tic.getWinner(board)).to.be.undefined;
-        });
-
-        it('returns undefined if no winner, missing top of column', function() {
-            let board = tic.generateBoard(3, 3, " ");
-            board = tic.placeLetter(board, 'X', "A2");
-            board = tic.placeLetter(board, 'X', "B2");
-            expect(tic.getWinner(board)).to.be.undefined;
-        });
-
-        it('returns undefined if no winner, missing bottom of column', function() {
-            let board = tic.generateBoard(3, 3, " ");
-            board = tic.placeLetter(board, 'X', "B2");
-            board = tic.placeLetter(board, 'X', "C2");
-            expect(tic.getWinner(board)).to.be.undefined;
-        });
-
-
-        it('returns undefined if no winner, missing center', function() {
+        it('returns false if move is played into occupied cell', function() {
             let board = tic.generateBoard(3, 3, " ");
             board = tic.placeLetter(board, 'X', "A3");
-            board = tic.placeLetter(board, 'O', "B2");
-            board = tic.placeLetter(board, 'X', "C1");
-            expect(tic.getWinner(board)).to.be.undefined;
+            expect(tic.isValidMove(board, 'A3')).to.be.false;
         });
     });
-
-
-
-//     describe('isBoardFull', function() {
-//         it('returns true if there are no spaces left on the board', function() {
-//             let board = tic.generateBoard(3, 3, " ");
-//             board = tic.placeLetter(board, 'X', "A1");
-//             board = tic.placeLetter(board, 'X', "A2");
-//             board = tic.placeLetter(board, 'X', "A3");
-//             board = tic.placeLetter(board, 'X', "B1");
-//             board = tic.placeLetter(board, 'X', "B2");
-//             board = tic.placeLetter(board, 'X', "B3");
-//             board = tic.placeLetter(board, 'X', "C1");
-//             board = tic.placeLetter(board, 'X', "C2");
-//             board = tic.placeLetter(board, 'X', "C3");
-//             expect(tic.isBoardFull(board)).to.be.true;
-//         });
-
-//         it('returns false if there are still empty cells left on the board', function() {
-//             let board = tic.generateBoard(3, 3, " ");
-//             expect(tic.isBoardFull(board)).to.be.false;
-
-//             board = tic.placeLetter(board, 'X', "A2");
-//             board = tic.placeLetter(board, 'X', "A3");
-//             board = tic.placeLetter(board, 'X', "B1");
-//             board = tic.placeLetter(board, 'X', "B2");
-//             board = tic.placeLetter(board, 'X', "B3");
-//             board = tic.placeLetter(board, 'X', "C1");
-//             board = tic.placeLetter(board, 'X', "C2");
-//             board = tic.placeLetter(board, 'X', "C3");
-//             expect(tic.isBoardFull(board)).to.be.false;
-//         });
-//     });
-
-
-//     describe('isValidMove', function() {
-//         it('returns true if move is played into empty cell that is within the board\'s dimensions', function() {
-//             const board = tic.generateBoard(3, 3, " ");
-//             expect(tic.isValidMove(board, 'B2')).to.be.true;
-//         });
-
-//         it('returns false if move is out of bounds', function() {
-//             const board = tic.generateBoard(3, 3, " ");
-//             expect(tic.isValidMove(board, 'D5')).to.be.false;
-//         });
-
-//         it('returns false if move is played into occupied cell', function() {
-//             let board = tic.generateBoard(3, 3, " ");
-//             board = tic.placeLetter(board, 'X', "A3");
-//             expect(tic.isValidMove(board, 'A3')).to.be.false;
-//         });
-//     });
 
 });

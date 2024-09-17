@@ -55,14 +55,25 @@ function algebraicToRowCol(algebraicNotation){
     const placement_arr = algebraicNotation.split("");
     let flag = true;
     const row_char = placement_arr[0].toUpperCase();;
-    const col_char = placement_arr[1];
+    const col_char = placement_arr.slice(1, placement_arr.length);
+    
     let row;
     let col;
     
-    if (/^[A-Z]$/.test(row_char) && /^[0-9]$/.test(col_char)){
+    for (let i = 0; i < col_char.length; i++){
+        if (isNaN(parseInt(col_char[i]))){
+            flag = false;
+        }
+    }
+    
+    col = parseInt(col_char.join("")) - 1;
+    
+    if ((isNaN(col)) || (col === null) || (col === undefined)){
+        flag = false;
+    }  
+    
+    if (/^[A-Z]$/.test(row_char)){
         row = row_char.charCodeAt(0) - 'A'.charCodeAt(0);
-        col = parseInt(col_char, 10) - 1;
-        
     }
     else{
         flag = false;
@@ -184,6 +195,34 @@ function boardToString(board){
     return visualize_board;
 }
 
+function isBoardFull(board){
+    for (const element of board){
+        if (element === " "){
+            return false;
+        }
+    }
+    return true;
+}
+
+function isValidMove(board, algebraicNotation){
+    const coor = algebraicToRowCol(algebraicNotation);
+    const row_length = Math.sqrt(board.length);
+    if (coor === undefined){
+        return false;
+    }
+    else {
+        if (coor.row >= row_length || coor.col >= row_length){
+            return false;
+        }
+        const idx =  rowColToIndex(board, coor.row, coor.col);
+        if (board[idx] != " "){
+            return false;
+        }
+
+        return true;
+    }
+}
+
 export {generateBoard, 
         boardFromString,
         rowColToIndex,
@@ -192,4 +231,6 @@ export {generateBoard,
         algebraicToRowCol,
         placeLetter,
         boardToString,
+        isBoardFull,
+        isValidMove,
         getWinner};
