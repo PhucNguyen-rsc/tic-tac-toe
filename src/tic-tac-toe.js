@@ -8,12 +8,12 @@ function generateBoard(rows, cols, initialValue) {
 }
 
 function boardFromString(s){
-    const arr = s.split('')
+    const arr = s.split('');
     let flag = true;
-    let check_length = Math.sqrt(arr.length);
-    if (Number.isInteger(check_length) && check_length > 0){
+    const checkLength = Math.sqrt(arr.length);
+    if (Number.isInteger(checkLength) && checkLength > 0){
         for (const char of arr) {
-            if ((char != "X") && (char != "O") && (char != " ") ) {
+            if ((char !== "X") && (char !== "O") && (char !== " ") ) {
                 flag = false;
                 break;
             }
@@ -31,49 +31,49 @@ function boardFromString(s){
 }
 
 function rowColToIndex(board, row, col){
-    const row_length = Math.sqrt(board.length);
-    return row_length * row + col;
+    const rowLength = Math.sqrt(board.length);
+    return rowLength * row + col;
 }
 
 function indexToRowCol(board, i){
-    const row_length = Math.sqrt(board.length);
-    const row = Math.floor(i / row_length);
-    const col =  i % row_length;
+    const rowLength = Math.sqrt(board.length);
+    const row = Math.floor(i / rowLength);
+    const col = i % rowLength;
     return {row, col};
 }
 
 function setBoardCell(board, letter, row, col){
-    const row_length = Math.sqrt(board.length);
-    const idx = row_length * row + col;
-    const new_board = [...board];
-    new_board[idx] = letter;
-    return new_board;
+    const rowLength = Math.sqrt(board.length);
+    const idx = rowLength * row + col;
+    const newBoard = [...board];
+    newBoard[idx] = letter;
+    return newBoard;
 
 }
 
 function algebraicToRowCol(algebraicNotation){
-    const placement_arr = algebraicNotation.split("");
+    const placementArr = algebraicNotation.split("");
     let flag = true;
-    const row_char = placement_arr[0].toUpperCase();;
-    const col_char = placement_arr.slice(1, placement_arr.length);
+    const rowChar = placementArr[0].toUpperCase();;
+    const colChar = placementArr.slice(1, placementArr.length);
     
     let row;
-    let col;
+    // let col;
     
-    for (let i = 0; i < col_char.length; i++){
-        if (isNaN(parseInt(col_char[i]))){
+    for (let i = 0; i < colChar.length; i++){
+        if (isNaN(parseInt(colChar[i]))){
             flag = false;
         }
     }
     
-    col = parseInt(col_char.join("")) - 1;
+    const col = parseInt(colChar.join("")) - 1;
     
     if ((isNaN(col)) || (col === null) || (col === undefined)){
         flag = false;
     }  
     
-    if (/^[A-Z]$/.test(row_char)){
-        row = row_char.charCodeAt(0) - 'A'.charCodeAt(0);
+    if (/^[A-Z]$/.test(rowChar)){
+        row = rowChar.charCodeAt(0) - 'A'.charCodeAt(0);
     }
     else{
         flag = false;
@@ -87,7 +87,7 @@ function algebraicToRowCol(algebraicNotation){
     }
 }
 
-function arrays_equal(arr1, arr2){
+function arraysEqual(arr1, arr2){
     for (let i = 0; i < arr1.length; i++) {
         if (arr1[i] !== arr2[i]) {
           return false;
@@ -98,53 +98,50 @@ function arrays_equal(arr1, arr2){
 }
 
 function placeLetter(board, letter, algebraicNotation){
-    const row_col = algebraicToRowCol(algebraicNotation);
-    const new_board = setBoardCell(board, letter,  row_col.row, row_col.col);
-    return new_board;
+    const rowCol = algebraicToRowCol(algebraicNotation);
+    const newBoard = setBoardCell(board, letter, rowCol.row, rowCol.col);
+    return newBoard;
 }
 
 function getWinner(board){
-    let x_flag = false;
-    let o_flag = false;
+    let xFlag = false;
+    let oFlag = false;
 
-    const row_length = Math.sqrt(board.length);
+    const rowLength = Math.sqrt(board.length);
 
-    const x_patterns = new Array(row_length).fill("X");
-    const o_patterns = new Array(row_length).fill("O");
+    const xPatterns = new Array(rowLength).fill("X");
+    const oPatterns = new Array(rowLength).fill("O");
 
     // pattern checking
-    for (let i = 0; i < row_length; i++){
-        let horizontal_pattern = board.slice(row_length*i, row_length*(i+1));
-        let vertical_pattern = board.filter((_, index) => index % row_length === i);
+    for (let i = 0; i < rowLength; i++){
+        const horizontalPattern = board.slice(rowLength*i, rowLength*(i+1));
+        const verticalPattern = board.filter((_, index) => index % rowLength === i);
 
-        if (arrays_equal(x_patterns, horizontal_pattern) || arrays_equal(x_patterns, vertical_pattern)){
-            x_flag = true;
+        if (arraysEqual(xPatterns, horizontalPattern) || arraysEqual(xPatterns, verticalPattern)){
+            xFlag = true;
             break;
         }
-        else if (arrays_equal(o_patterns, horizontal_pattern) || arrays_equal(o_patterns, vertical_pattern)){
-            o_flag = true;
+        else if (arraysEqual(oPatterns, horizontalPattern) || arraysEqual(oPatterns, verticalPattern)){
+            oFlag = true;
             break;  
         }
     }
 
-    if (!x_flag && !o_flag){
-        let right_diagonal = board.filter((_, index) => index % (row_length+1) === 0);
-        let left_diagnonal = board.filter((_, index) => (index % (row_length-1) === 0) && (index!=0));
-        if (arrays_equal(x_patterns, right_diagonal) || arrays_equal(x_patterns, left_diagnonal)){
-            x_flag = true;
+    if (!xFlag && !oFlag){
+        const rightDiagonal = board.filter((_, index) => index % (rowLength+1) === 0);
+        const leftDiagnonal = board.filter((_, index) => (index % (rowLength-1) === 0) && (index!==0));
+        if (arraysEqual(xPatterns, rightDiagonal) || arraysEqual(xPatterns, leftDiagnonal)){
+            xFlag = true;
         }
-        else if (arrays_equal(o_patterns, right_diagonal) || arrays_equal(o_patterns, left_diagnonal)){
-            o_flag = true;
+        else if (arraysEqual(oPatterns, rightDiagonal) || arraysEqual(oPatterns, leftDiagnonal)){
+            oFlag = true;
         }
     }
 
-    // console("X flag: ", x_flag);
-    // console("O flag: ", o_flag);
-
-    if (x_flag){
+    if (xFlag){
         return "X";
     }
-    else if (o_flag){
+    else if (oFlag){
         return "O";
     }
     else{
@@ -154,45 +151,45 @@ function getWinner(board){
 
 
 function boardToString(board){
-    let visualize_board = "  ";
-    const row_length = Math.sqrt(board.length);
+    let visualizeBoard = "  ";
+    const rowLength = Math.sqrt(board.length);
     const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(i + 65));
     
     // row_number init at the top
-    for (let i = 0; i < row_length; i++){ 
-        visualize_board+="   ";
-        visualize_board+=(i+1);
+    for (let i = 0; i < rowLength; i++){ 
+        visualizeBoard+="   ";
+        visualizeBoard+=(i+1);
     }
     // first row barrier init at the top
-    visualize_board+="  \n   ";
-    for (let i = 0; i < row_length; i++){ 
-        visualize_board+="+---";
+    visualizeBoard+="  \n   ";
+    for (let i = 0; i < rowLength; i++){ 
+        visualizeBoard+="+---";
     }
-    for (let row_idx = 0; row_idx < row_length; row_idx++){ // row-wise for whole board
-        visualize_board+="+\n ";
-        visualize_board+=letters[row_idx];
-        visualize_board+=" ";
-        for (let col_idx = 0; col_idx < row_length; col_idx++){ // col-wise for each row
-            if (board[row_idx*row_length + col_idx] == "X"){
-                visualize_board+="| X ";
+    for (let rowIdx = 0; rowIdx < rowLength; rowIdx++){ // row-wise for whole board
+        visualizeBoard+="+\n ";
+        visualizeBoard+=letters[rowIdx];
+        visualizeBoard+=" ";
+        for (let colIdx = 0; colIdx < rowLength; colIdx++){ // col-wise for each row
+            if (board[rowIdx*rowLength + colIdx] === "X"){
+                visualizeBoard+="| X ";
             }
-            else if (board[row_idx*row_length + col_idx] == "O"){
-                visualize_board+="| O ";
+            else if (board[rowIdx*rowLength + colIdx] === "O"){
+                visualizeBoard+="| O ";
             }
             else{
-                visualize_board+="|   ";
+                visualizeBoard+="|   ";
             }
         }
 
-        visualize_board+="|\n   ";
-        for (let i = 0; i < row_length; i++){ 
-            visualize_board+="+---";
+        visualizeBoard+="|\n   ";
+        for (let i = 0; i < rowLength; i++){ 
+            visualizeBoard+="+---";
         }
     //
     }
-    visualize_board+="+\n";
+    visualizeBoard+="+\n";
     
-    return visualize_board;
+    return visualizeBoard;
 }
 
 function isBoardFull(board){
@@ -206,16 +203,16 @@ function isBoardFull(board){
 
 function isValidMove(board, algebraicNotation){
     const coor = algebraicToRowCol(algebraicNotation);
-    const row_length = Math.sqrt(board.length);
+    const rowLength = Math.sqrt(board.length);
     if (coor === undefined){
         return false;
     }
     else {
-        if (coor.row >= row_length || coor.col >= row_length){
+        if (coor.row >= rowLength || coor.col >= rowLength){
             return false;
         }
-        const idx =  rowColToIndex(board, coor.row, coor.col);
-        if (board[idx] != " "){
+        const idx = rowColToIndex(board, coor.row, coor.col);
+        if (board[idx] !== " "){
             return false;
         }
 
