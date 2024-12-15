@@ -1,5 +1,6 @@
 Simple tic-tac-toe game coding mainly from JavaScript. Use eslint + mocha + chai for unit testing
 
+'''
           columns
          0   1   2
        +---+---+---+
@@ -9,3 +10,4 @@ Simple tic-tac-toe game coding mainly from JavaScript. Use eslint + mocha + chai
   s    +---+---+---+
      2 | 6 | 7 | 8 |
        +---+---+---+
+'''
